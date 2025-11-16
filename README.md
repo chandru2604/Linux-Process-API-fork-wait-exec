@@ -3,8 +3,6 @@ Ex02-Linux Process API-fork(), wait(), exec()
 # Ex02-OS-Linux-Process API - fork(), wait(), exec()
 Operating systems Lab exercise
 
-###  Developed By: CHANDRU S
-### Register Number: 21224230042
 
 # AIM:
 To write C Program that uses Linux Process API - fork(), wait(), exec()
@@ -26,7 +24,7 @@ Test the C Program for the desired output.
 # PROGRAM:
 
 ## C Program to print process ID and parent Process ID using Linux API system calls
-```
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -45,31 +43,50 @@ int main(void)
 	printf("The process id: %d\n",process_id);
 	printf("The process id of parent function: %d\n",p_process_id);
 	return 0; }
-```
-OUTPUT
-![image](https://github.com/user-attachments/assets/1cf6d53a-babc-4140-99ed-609d57269480)
+
+
+
+
+### Output:
+![os 1](https://github.com/user-attachments/assets/0e2052ba-d133-4c9c-bbc1-8baaf02a6f59)
+
+
+
 ## C Program to create new process using Linux API system calls fork() and exit()
-```
+
 #include <stdio.h>
-#include<stdlib.h>
-int main(){
-   int pid; 
-   pid=fork(); 
-   if(pid == 0) {
-        printf("Iam child my pid is %d\n",getpid());   
-        printf("My parent pid is:%d\n",getppid()); 
-        exit(0);
- } 
-   else{ 
-        printf("I am parent, my pid is %d\n",getpid()); 
-        sleep(100); 
-        exit(0);
-} 
-```
-## OUTPUT:
-![image](https://github.com/user-attachments/assets/3851d795-ff9d-4228-aa20-66b8fa191394)
+#include <stdlib.h>
+#include <unistd.h>
+int main() {
+    int pid;
+    pid = fork();
+    if (pid == -1) {
+        perror("fork");
+        exit(EXIT_FAILURE);
+    }
+    else if (pid == 0) {
+        printf("I am child, my pid is %d\n", getpid());
+        printf("My parent pid is: %d\n", getppid());
+        exit(EXIT_SUCCESS);
+    }
+    else {
+        printf("I am parent, my pid is %d\n", getpid());
+        sleep(100);
+        exit(EXIT_SUCCESS);
+    }
+    return 0;
+}
+
+
+## Output:
+![os 2](https://github.com/user-attachments/assets/af1ee1fc-add2-41d0-8c98-5a5ce714bfed)
+
+
+
+
+
 ## C Program to execute Linux system commands using Linux API system calls exec() family
-```
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -97,8 +114,12 @@ int main() {
     }
     return 0;
 }
-```
-## OUTPUT:
-![image](https://github.com/user-attachments/assets/6e8e9a80-a36d-4deb-98b1-5fcb0688c13e)
-## RESULT:
-The programs has been executed successfully.
+
+
+## Output:
+![os 3](https://github.com/user-attachments/assets/246e007f-729f-4ae1-9a06-a737d821cca9)
+
+
+
+# RESULT:
+The programs are executed successfully.
